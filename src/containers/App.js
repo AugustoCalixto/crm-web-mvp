@@ -155,7 +155,7 @@ const App = (props) => {
     document.body.classList.add('dark-theme');
     applyTheme = createMuiTheme(darkTheme)
   } else {
-    applyTheme = getColorTheme(themeColor, applyTheme);
+    applyTheme = getColorTheme(PINK, applyTheme);
   }
   if (location.pathname === '/') {
     if (token === null) {
