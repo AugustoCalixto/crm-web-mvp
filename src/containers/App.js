@@ -161,7 +161,7 @@ const App = (props) => {
     if (token === null) {
       return (<Redirect to={'/signin'}/>);
     } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-      return (<Redirect to={'/app/sample-page'}/>);
+      return (<Redirect to={'/app'}/>);
     } else {
       return (<Redirect to={initURL}/>);
     }
