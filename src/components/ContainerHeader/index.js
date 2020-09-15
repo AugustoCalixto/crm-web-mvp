@@ -22,7 +22,7 @@ const ContainerHeader = ({title, match}) => {
   const path = match.path.substr(1);
   const subPath = path.split('/');
   return (
-    <div className="page-heading d-sm-flex justify-content-sm-between align-items-sm-center">
+    <div className="d-sm-flex justify-content-sm-between align-items-sm-center">
       <h2 className="title mb-3 mb-sm-0">{title}</h2>
 
       <Breadcrumb className="mb-0" tag="nav">
