@@ -5,8 +5,11 @@ import { Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import {Dropdown, DropdownMenu, DropdownToggle} from "reactstrap";
 import {COLLAPSED_DRAWER, FIXED_DRAWER} from "constants/ActionTypes";
+import {userSignOut} from 'actions/Auth';
 import SearchBox from "components/SearchBox";
 import MailNotification from "../../../../components/MailNotification";
 import AppNotification from "../../../../components/AppNotification";
@@ -25,6 +28,17 @@ const Index = (props) => {
   const [searchBox, setSearchBox] = useState(false);
   const [apps, setApps] = useState(false);
   const [searchText, setSearchText] = useState('');
+  const [anchorE1, setAnchorE1] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = event => {
+    setOpen(true);
+    setAnchorE1(event.currentTarget);
+  };
+
+  const handleRequestCloseMenu = () => {
+    setOpen(false);
+  };
 
   const onAppNotificationSelect = () => {
     setAppNotification(!appNotification)
@@ -59,6 +73,7 @@ const Index = (props) => {
 
 
   const Apps = () => {
+
     return (
       <ul className="jr-list jr-list-half">
         <li className="jr-list-item">
@@ -132,9 +147,40 @@ const Index = (props) => {
 
         <SearchBox styleName="d-none d-lg-block" placeholder=""
                    onChange={updateSearchText}
-                   value={searchText}/>
+                   value={searchText}/> 
 
-        
+      <div className="user-detail">
+        <div style={{minWidth: 20, minHeight: 20}}>
+          <i className="zmdi zmdi-settings zmdi-hc-2x" onClick={handleClick}/>
+        </div>
+      </div>
+        <Menu className="user-info"
+                    id="simple-menu"
+                    anchorEl={anchorE1}
+                    open={open}
+                    onClose={handleRequestCloseMenu}
+                    PaperProps={{
+                      style: {
+                        minWidth: 120,
+                        paddingTop: 0,
+                        paddingBottom: 0
+                      }
+                    }}
+              >
+          <MenuItem onClick={handleRequestClose}>
+            <i className="zmdi zmdi-settings zmdi-hc-fw mr-2"/>
+            <IntlMessages id="popup.setting"/>
+          </MenuItem>
+          <MenuItem onClick={() => {
+            handleRequestClose();
+            dispatch(userSignOut());
+          }}>
+            <i className="zmdi zmdi-sign-in zmdi-hc-fw mr-2"/>
+
+            <IntlMessages id="popup.logout"/>
+          </MenuItem>
+
+        </Menu>
 
         <div className="ellipse-shape"/>
       </Toolbar>
