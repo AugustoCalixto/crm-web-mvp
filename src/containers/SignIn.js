@@ -10,7 +10,7 @@ import {NotificationContainer, NotificationManager} from "react-notifications";
 
 const SignIn = (props) => {
 
-  const [email, setEmail] = useState('demo@example.com');
+  const [username, setUsername] = useState('demo@example.com');
   const [password, setPassword] = useState('demo#123');
   const dispatch = useDispatch();
   const token = useSelector(({auth}) => auth.token);
@@ -29,7 +29,7 @@ const SignIn = (props) => {
 
         <div className="app-logo-content d-flex align-items-center justify-content-center">
           <Link className="logo-lg" to="/" title="Jambo">
-            <img src={require("assets/images/logo.png")} alt="jambo" title="jambo"/>
+            <img src={require("assets/icons/ms-icon-150x150.png")} alt="jambo" title="jambo"/>
           </Link>
         </div>
 
@@ -42,16 +42,18 @@ const SignIn = (props) => {
             <form>
               <fieldset>
                 <TextField
-                  label={<IntlMessages id="appModule.email"/>}
+                  name="username"
+                  label="Login"
                   fullWidth
-                  onChange={(event) => setEmail(event.target.value)}
-                  defaultValue={email}
+                  onChange={(event) => setUsername(event.target.value)}
+                  defaultValue={username}
                   margin="normal"
                   className="mt-1 my-sm-3"
                 />
                 <TextField
+                  name="password"
                   type="password"
-                  label={<IntlMessages id="appModule.password"/>}
+                  label="Senha"
                   fullWidth
                   onChange={(event) => setPassword(event.target.value)}
                   defaultValue={password}
@@ -61,13 +63,13 @@ const SignIn = (props) => {
 
                 <div className="mb-3 d-flex align-items-center justify-content-between">
                   <Button onClick={() => {
-                    dispatch(userSignIn({email, password}));
+                    dispatch(userSignIn({username, password}));
                   }} variant="contained" color="primary">
-                    <IntlMessages id="appModule.signIn"/>
+                    Entrar
                   </Button>
 
-                  <Link to="/signup">
-                    <IntlMessages id="signIn.signUp"/>
+                  <Link to="/registrar">
+                    Criar uma conta.
                   </Link>
                 </div>
 

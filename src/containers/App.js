@@ -41,6 +41,7 @@ import {setInitUrl} from "../actions/Auth";
 import RTL from "util/RTL";
 import {setDarkTheme, setThemeColor} from "../actions/Setting";
 import AppLayout from "./AppLayout";
+import LandingPage from "./LandingPage";
 
 const RestrictedRoute = ({component: Component, token, ...rest}) =>
   <Route
@@ -50,7 +51,7 @@ const RestrictedRoute = ({component: Component, token, ...rest}) =>
         ? <Component {...props} />
         : <Redirect
           to={{
-            pathname: '/signin',
+            pathname: '/login',
             state: {from: props.location}
           }}
         />}
@@ -157,15 +158,7 @@ const App = (props) => {
   } else {
     applyTheme = getColorTheme(PINK, applyTheme);
   }
-  if (location.pathname === '/') {
-    if (token === null) {
-      return (<Redirect to={'/signin'}/>);
-    } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
-      return (<Redirect to={'/app'}/>);
-    } else {
-      return (<Redirect to={initURL}/>);
-    }
-  }
+  
   if (isDirectionRTL) {
     applyTheme.direction = 'rtl';
     document.body.classList.add('rtl')
@@ -185,10 +178,11 @@ const App = (props) => {
           <RTL>
             <div className="app-main">
               <Switch>
+                <Route exact path='/' component={LandingPage}/>
                 <RestrictedRoute path={`${match.url}app`} token={token}
                                  component={AppLayout}/>
-                <Route path='/signin' component={SignIn}/>
-                <Route path='/signup' component={SignUp}/>
+                <Route path='/login' component={SignIn}/>
+                <Route path='/registrar' component={SignUp}/>
                 {/*<Route*/}
                 {/*  component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>*/}
               </Switch>

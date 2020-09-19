@@ -44,11 +44,11 @@ export const userSignUp = ({name, email, password}) => {
   }
 };
 
-export const userSignIn = ({email, password}) => {
+export const userSignIn = ({username, password}) => {
   return (dispatch) => {
     dispatch({type: FETCH_START});
     axios.post('auth/login', {
-        email: email,
+        username: username,
         password: password,
       }
     ).then(({data}) => {

@@ -1,26 +1,22 @@
 import React, {useState} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import { server } from "../../../../constants";
 import { Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {Dropdown, DropdownMenu, DropdownToggle} from "reactstrap";
 import {COLLAPSED_DRAWER, FIXED_DRAWER} from "constants/ActionTypes";
-import {userSignOut} from 'actions/Auth';
 import SearchBox from "components/SearchBox";
-import MailNotification from "../../../../components/MailNotification";
-import AppNotification from "../../../../components/AppNotification";
-import CardHeader from "components/dashboard/Common/CardHeader/index";
 import {switchLanguage, toggleCollapsedNav} from "actions/Setting";
 import IntlMessages from "util/IntlMessages";
-import LanguageSwitcher from "components/LanguageSwitcher/index";
 
 const Index = (props) => {
 
   const dispatch = useDispatch();
+
   const {drawerType, locale} = useSelector(({settings}) => settings);
   const [langSwitcher, setLangSwitcher] = useState(false);
   const [mailNotification, setMailNotification] = useState(false);
@@ -167,13 +163,13 @@ const Index = (props) => {
                       }
                     }}
               >
-          <MenuItem onClick={handleRequestClose}>
+          <MenuItem>
             <i className="zmdi zmdi-settings zmdi-hc-fw mr-2"/>
             <IntlMessages id="popup.setting"/>
           </MenuItem>
           <MenuItem onClick={() => {
             handleRequestClose();
-            dispatch(userSignOut());
+            localStorage.removeItem(server.TOKEN_KEY);
           }}>
             <i className="zmdi zmdi-sign-in zmdi-hc-fw mr-2"/>
 

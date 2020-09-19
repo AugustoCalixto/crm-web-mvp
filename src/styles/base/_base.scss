@@ -15,7 +15,7 @@ body {
     weight: $font-weight-base;
   }
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body.ios-mobile-view-height {

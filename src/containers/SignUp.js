@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import IntlMessages from 'util/IntlMessages';
-import {userSignUp} from '../actions/Auth';
+import * as registerActions from "../actions/register.action";
 import {hideMessage} from "../actions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {NotificationContainer, NotificationManager} from "react-notifications";
@@ -35,24 +35,24 @@ const SignUp = (props) => {
       <div className="app-login-main-content">
         <div className="app-logo-content d-flex align-items-center justify-content-center">
           <Link className="logo-lg" to="/" title="Jambo">
-            <img src={require("assets/images/logo.png")} alt="jambo" title="jambo"/>
+            <img src={require("assets/icons/ms-icon-150x150.png")} alt="jambo" title="jambo"/>
           </Link>
         </div>
 
         <div className="app-login-content">
           <div className="app-login-header">
-            <h1>Sign Up</h1>
+            <h1>Registrar</h1>
           </div>
 
           <div className="mb-4">
-            <h2><IntlMessages id="appModule.createAccount"/></h2>
+            <h2>Crie uma conta para acessar a plataforma CRM.</h2>
           </div>
 
           <div className="app-login-form">
             <form method="post" action="/">
               <TextField
                 type="text"
-                label="Name"
+                label="Nome"
                 onChange={(event) => setName(event.target.value)}
                 fullWidth
                 defaultValue={name}
@@ -73,7 +73,7 @@ const SignUp = (props) => {
               <TextField
                 type="password"
                 onChange={(event) => setPassword(event.target.value)}
-                label={<IntlMessages id="appModule.password"/>}
+                label="Senha"
                 fullWidth
                 defaultValue={password}
                 margin="normal"
@@ -81,14 +81,13 @@ const SignUp = (props) => {
               />
 
               <div className="mb-3 d-flex align-items-center justify-content-between">
-                <Button variant="contained" onClick={() => {
-                  dispatch(userSignUp({name, email, password}));
+                <Button variant="contained" onClick={(values) => {
+                  dispatch(registerActions.register(values, props.history));
                 }} color="primary">
-                  <IntlMessages
-                    id="appModule.regsiter"/>
+                  Registrar
                 </Button>
-                <Link to="/signin">
-                  <IntlMessages id="signUp.alreadyMember"/>
+                <Link to="/login">
+                  Eu já tenho uma conta.
                 </Link>
               </div>
 
