@@ -86,7 +86,7 @@ class Profile extends Component {
           src={
             values.file_obj != null
               ? values.file_obj
-              : 'http://localhost:8080/images/user.png'
+              : process.env.REACT_APP_API_URL + 'images/user.png'
           }
           class="profile-user-img img-fluid img-circle"
           width={100}
@@ -100,7 +100,7 @@ class Profile extends Component {
       .then(response => {
         console.log(response.data);
         document.getElementById('avatarsProfile').src =
-          'http://localhost:8080/images/' + response.data.avatars
+          process.env.REACT_APP_API_URL + 'images/' + response.data.avatars
         this.setState({ response: response.data });
       })
       .catch(error => {

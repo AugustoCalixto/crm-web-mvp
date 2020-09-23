@@ -23,7 +23,7 @@ class Passwordforgot extends Component {
 
   submitForm = async formData => {
     await axios
-      .post("http://localhost:8080/password/reset", formData)
+      .post( process.env.REACT_APP_API_URL + "reset", formData)
       .then(res => {
         console.log(res.data.result);
         if (res.data.result === "success") {

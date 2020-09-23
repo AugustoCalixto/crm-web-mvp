@@ -84,7 +84,7 @@ class Profile extends Component {
           src={
             values.file_obj != null
               ? values.file_obj
-              : "http://localhost:8080/images/user.png"
+              : process.env.REACT_APP_API_URL + "user.png"
           }
           class="profile-user-img img-fluid img-circle"
           width={100}
@@ -94,10 +94,10 @@ class Profile extends Component {
   };
   getData = async id => {
     await axios
-      .get("http://localhost:8080/profile/id/" + id)
+      .get(process.env.REACT_APP_API_URL + "profile/id/" + id)
       .then(response => {
         console.log(response.data);
-        document.getElementById("avatars").src = "http://localhost:8080/images/"+response.data.avatars
+        document.getElementById("avatars").src =  process.env.REACT_APP_API_URL + "images/" +response.data.avatars
         // profile.setAttribute("src",);
         this.setState({ response: response.data });
       })
@@ -107,7 +107,7 @@ class Profile extends Component {
   };
   submitForm = async formData => {
     await axios
-      .put("http://localhost:8080/profile", formData)
+      .put(process.env.REACT_APP_API_URL + "profile", formData)
       .then(res => {
         console.log(res.data.result);
         if (res.data.result === "success") {

@@ -10,10 +10,10 @@ const ProfilePage = (props) => {
   // Function that store the user id returned from the parseJWT function in the component state
   const getData = async id => {
     await axios
-      .get('http://localhost:8080/profile/id/' + id)
+      .get(process.env.REACT_APP_API_URL + 'profile/id/' + id)
       .then(response => {
         document.getElementById('avatarsProfile').src =
-          'http://localhost:8080/images/' + response.data.avatars
+        process.env.REACT_APP_API_URL + 'images/' + response.data.avatars
         // profile.setAttribute("src",);
         setProfile(response);
       })
@@ -46,7 +46,7 @@ const ProfilePage = (props) => {
           src={
             values.file_obj != null
               ? values.file_obj
-              : 'http://localhost:8080/images/user.png'
+              : process.env.REACT_APP_API_URL + 'images/user.png'
           }
           class="profile-user-img img-fluid img-circle"
           width={100}

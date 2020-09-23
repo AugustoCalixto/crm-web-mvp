@@ -26,11 +26,11 @@ const LayoutApp = ({ children }) => {
   // Function that store the user id returned from the parseJWT function in the component state
   const getData = async id => {
     await axios
-      .get('http://localhost:8080/profile/id/' + id)
+      .get(process.env.REACT_APP_API_URL + 'profile/id/' + id)
       .then(response => {
         if (response.data.avatars != undefined){
         document.getElementById('avatars').src =
-          'http://localhost:8080/images/' + response.data.avatars}
+        process.env.REACT_APP_API_URL + 'images/' + response.data.avatars}
         else {
           document.getElementById('avatars').src = ProfileEmptyImage;
         }

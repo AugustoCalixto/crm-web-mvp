@@ -13,8 +13,8 @@ export const FORGOT_FETCHING = "FORGOT_FETCHING";
 export const FORGOT_SUCCESS = "FORGOT_SUCCESS";
 export const FORGOT_FAILED = "FORGOT_FAILED";
 
-export const apiUrl = "http://localhost:8080/";
-export const imageUrl = "http://localhost:8080";
+export const apiUrl = process.env.REACT_APP_API_URL;
+export const imageUrl = process.env.REACT_APP_API_URL;
 
 
 // CRUD

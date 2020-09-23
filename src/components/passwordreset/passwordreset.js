@@ -25,7 +25,7 @@ class Passwordreset extends Component {
 
   submitForm = async (values, history, token) => {
     await axios
-      .put("http://localhost:8080/password/reset?token=" + token, values)
+      .put(process.env.REACT_APP_API_URL + "reset?token=" + token, values)
       .then(res => {
         if (res.data.result === "success") {
           swal("Success!", res.data.message, "success").then(value => {
