@@ -33,7 +33,7 @@ const StyledSection = styled.div`
     ".  info    ."
     ".  .       ."
     ;
-    grid-template-rows: 1fr 2fr .5fr 15fr 1fr;
+    grid-template-rows: 1fr 2fr .5fr 5fr 1fr;
     grid-template-columns: 1fr 8fr 1fr;
 
     .titleDiv{
@@ -67,7 +67,7 @@ const StyledSection = styled.div`
 const Section3 = () => {
     return (
         <StyledSection  id="partners">
-            <div className="titleDiv">
+            <div className="titleDiv mt-4">
 
                 <Col className="ml-auto mr-auto text-center" md="8">
                     <Typography variant="h3" className="title">Nossos Parceiros Globais</Typography>

@@ -4,11 +4,11 @@ import { useHistory } from "react-router-dom";
 
 import styled from 'styled-components';
 import { Input } from 'reactstrap';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 
 // Images
 import startPhoto from './startPhoto.jpg';
-// import Logo from './logo.png';
+import Logo from './logo.png';
 import phoneImg from './phone.png';
 
 // FontAwesome Icons
@@ -27,7 +27,7 @@ const StyledSection = styled.div`
     ". phoneImg ."
     ;
     grid-template-rows: 20% 55% 25%;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 8fr 1fr;
 
     .logoArea {
         grid-area: logoArea;
@@ -152,12 +152,19 @@ const Section1 = () => {
             </StyledPlayer>
             <StyledSection>
                 <div className="logoArea">
-                    <h1 className="text-center">Clinicus</h1>
-                    <h2 className="text-center">Connect you to mental health care for free.</h2>
+                    <Grid container>
+                        <Grid item sm="2">
+                            <img alt="logo" src={Logo} style={{width: "100%"}}/>
+                        </Grid>
+                        <Grid item sm="10">
+                            <h1 className="text-center">Clinicus</h1>
+                            <h2 className="text-center">Conectamos você a uma melhor saúde emocional.</h2>
+                        </Grid>
+                    </Grid>
                     <Button className="d-block mx-auto mt-4" variant="contained" onClick={handleClick}>Acesso Beta à Plataforma CRM</Button>
                 </div>
                 <div style={{gridArea: 'phoneImg'}}>
-                    <img className="phoneImg mx-auto d-block" alt='' src={phoneImg}/>
+                    {/* <img className="phoneImg mx-auto d-block" alt='' src={phoneImg}/> */}
                 </div>
                 
             </StyledSection>

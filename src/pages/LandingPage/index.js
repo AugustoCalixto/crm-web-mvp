@@ -9,7 +9,8 @@ import Section1 from './components/Section1';
 import SectionX from './components/SectionX';
 import Section2 from './components/Section2';
 import Section4 from './components/Section4';
-import Section5 from './components/Section5';
+// import Section5 from './components/Section5';
+import SectionFeature from './components/SectionFeature';
 import Footer from '../../components/FooterLP';
 
 const HomePageDiv = styled.div`
@@ -50,9 +51,10 @@ export default function HomePage() {
           <Section1 />
           <SectionX />
           <Section2 />
+          <SectionFeature/>
           {/*<Section3 />*/}
           <Section4 />
-          <Section5 />
+          {/* <Section5 /> */}
           <Footer/>
         {/* </>} */}
         
