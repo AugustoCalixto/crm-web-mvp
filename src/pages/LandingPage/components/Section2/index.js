@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Typography } from '@material-ui/core';
-import { Col, } from 'reactstrap';
+import { Typography, Grid } from '@material-ui/core';
+import Image from './images/image.svg';
 
 const StyledSection = styled.div`
     width: 100%;
@@ -41,14 +41,15 @@ const StyledSection = styled.div`
 const Section2 = () => {
     return (
         <StyledSection  id="about">
-            <div className="titleDiv">
+            <Grid container className="titleDiv">
+                <Grid item className="px-2 text-center" md="6">
 
-                <Col className="ml-auto mr-auto text-center" md="8">
+
                     <Typography variant="h3" className="title">Sobre a Clinicus</Typography>
 
                     <p className="mt-3">
                         CLINICUS conecta pessoas a soluções para saúde emocional e psicológica. 
-                        <br/>Esta solução vem da combinação de Inteligência Artificial e profissionais da saúde.
+                        Esta solução vem da combinação de Inteligência Artificial e profissionais da saúde.
 
                         <br/><br/>Você pode falar com Ollie, nossa IA, que irá acompanhá-lo como um novo amigo,
                          que te escut e entende, e busca dar sempre os melhores conselhos e soluções para o que você está passando.
@@ -59,9 +60,12 @@ const Section2 = () => {
                         <br/><br/>Durante o dia-a-dia, o Ollie irá acompanhá-lo e dar-lhe as melhores dicas e conselhos para ultrapassar os seus obstáculos,
                          e ter uma rotina ainda mais confortável e saudável.
                     </p>
-                </Col>
 
-            </div>
+                </Grid>
+                <Grid item container justify="center" alignItems="center" md="6">
+                    <img alt=" " src={Image} style={{width: '80%', margin: 'auto'}}/>
+                </Grid>
+            </Grid>
         </StyledSection>
     )
 }
