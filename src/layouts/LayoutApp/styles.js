@@ -101,6 +101,8 @@ export const StyledImgProfileOpened = styled.img`
 export const StyledMain = styled.main`
   position: relative;
   z-index: 1;
+  width: 100vw;
+  min-height: 100vh;
 
   .bottomMain{
     position: fixed;
@@ -128,7 +130,7 @@ export const StyledMainDiv = styled.div`
 
 export const StyledCard = styled(Card)`
   position: relative;
-  z-index: 3;
+  z-index: 30;
   top: 15vh;
   display: block;
   will-change: inherit;

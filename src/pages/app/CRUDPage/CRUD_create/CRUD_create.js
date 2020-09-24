@@ -5,8 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as CRUDActions from "../../../../redux/actions/crud.action";
 import { server } from "../../../../redux/constants";
 
-import Header from "../../../../components/header";
-import Footer from "../../../../components/footer";
+import LayoutApp from '../../../../layouts/LayoutApp';
 import "./CRUD_create.css";
 
 const Create_Schema = Yup.object().shape({
@@ -108,8 +107,7 @@ const CRUDPage_create = (props) => {
     };  
 
     return (
-        <>
-          <Header/>
+        <LayoutApp>
             <div className="container-fluid">
               <div className="container">
                 <div className="page-container">
@@ -139,9 +137,8 @@ const CRUDPage_create = (props) => {
                 </div>
                 </div>
               </div>
-            </div>          
-          <Footer/>
-        </>
+            </div>
+        </LayoutApp>
       );  
 };
 

@@ -4,6 +4,7 @@ import { server } from "../../../../redux/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 
 import LayoutApp from '../../../../layouts/LayoutApp';
 
@@ -13,12 +14,12 @@ const CRUD_index = (props) => {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (localStorage.getItem(server.TOKEN_KEY) === null) {
-      return props.history.push("/login");
-    }
-    dispatch(crudActions.index());
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem(server.TOKEN_KEY) === null) {
+  //     return props.history.push("/login");
+  //   }
+  //   dispatch(crudActions.index());
+  // }, []);
 
   function confirmDelete(id) {
     swal({
@@ -42,24 +43,24 @@ const CRUD_index = (props) => {
     <div className="container-fluid">
       <div className="container">
         <div className="page-container">
-        <table className="table table-hover text-nowrap">
-          <thead>
-            <tr>
+        <Table className="table table-hover text-nowrap">
+          <TableHead>
+            <TableRow>
               <th>Alias</th>
               <th>Serial Name</th>
               <th>Created Date</th>
               <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {crudReducer.result ? (
               crudReducer.result.map((data, index) => {
                 return (
-                  <tr key={index}>
-                    <td>{data.alias}</td>
-                    <td>{data.serial_number}</td>
-                    <td>{data.created}</td>
-                    <td>
+                  <TableRow key={index}>
+                    <TableCell>{data.alias}</TableCell>
+                    <TableCell>{data.serial_number}</TableCell>
+                    <TableCell>{data.created}</TableCell>
+                    <TableCell>
                       <Link to={"/crud/update/" + data._id}>
                         Edit
                       </Link>
@@ -67,15 +68,15 @@ const CRUD_index = (props) => {
                       <Link onClick={() => confirmDelete(data._id)}>
                         Delete
                       </Link>
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 );
               })
             ) : (
-              <td></td>
+              <TableCell></TableCell>
             )}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
         </div>
       </div>    
     </div>

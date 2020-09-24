@@ -138,11 +138,11 @@ const LayoutApp = ({ children }) => {
                 <FontAwesomeIcon className="ml-1" icon="home" />
                 <Typography className="ml-3">Início</Typography>
               </IconButton>
-              <IconButton className="m-3" row onClick={''}>
+              <IconButton className="m-3" row href="/pacientes">
                 <FontAwesomeIcon className="ml-1" icon="street-view" />
                 <Typography className="ml-3">Pacientes</Typography>
               </IconButton>
-              <IconButton className="m-3" row onClick={''}>
+              <IconButton className="m-3" row href="consultas">
                 <FontAwesomeIcon className="ml-1" icon="calendar-check" />
                 <Typography className="ml-4">Consultas</Typography>
               </IconButton>

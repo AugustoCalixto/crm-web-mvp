@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
+import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import * as crudActions from "../../../../redux/actions/crud.action";
+import * as CRUDActions from "../../../../redux/actions/crud.action";
 import { server } from "../../../../redux/constants";
+import { Grid } from '@material-ui/core';
 
 import LayoutApp from '../../../../layouts/LayoutApp';
+// import "./CRUD_create.css";
 
-const CRUDPage_update = (props) => {
+const Create_Schema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "POS name is Too Short!")
+    .max(22, "POS name is Too Long!")
+    .required("POS name is Required"),
+  serial_number: Yup.string()
+    .min(2, "Serial number is Too Short!")
+    .max(22, "Serial number is Too Long!")
+    .required("Serial number is Required"),
+});
+
+const CRUDPage_create = (props) => {
   const dispatch = useDispatch();
   const crudReducer = useSelector(
     ({ crudReducer }) => crudReducer
@@ -16,9 +30,6 @@ const CRUDPage_update = (props) => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
       return props.history.push("/login");
     }
-    const { id } = props.match.params;
- 
-    dispatch(crudActions.getCRUDById(id));
   }, []);
 
   const showForm = ({
@@ -31,7 +42,7 @@ const CRUDPage_update = (props) => {
     }) => {
       return (
         <form onSubmit={handleSubmit}>
-          <div className="form-group input-group has-feedback">
+          <Grid className="form-group input-group has-feedback">
             <input
               type="text"
               name="alias"
@@ -45,18 +56,18 @@ const CRUDPage_update = (props) => {
                   : "form-control"
               }
             />
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <Grid class="input-group-append">
+              <Grid class="input-group-text">
                 <span class="fas fa-user"></span>
-              </div>
-            </div>
+              </Grid>
+            </Grid>
             {errors.alias && touched.alias ? (
               <small id="passwordHelp" class="text-danger">
                 {errors.alias}
               </small>
             ) : null}
-          </div>
-          <div className="form-group input-group has-feedback">
+          </Grid>
+          <Grid className="form-group input-group has-feedback">
             <input
               type="text"
               name="serial_number"
@@ -70,19 +81,19 @@ const CRUDPage_update = (props) => {
                   : "form-control"
               }
             />
-            <div class="input-group-append">
-              <div class="input-group-text">
+            <Grid class="input-group-append">
+              <Grid class="input-group-text">
                 <span class="fas fa-user"></span>
-              </div>
-            </div>
+              </Grid>
+            </Grid>
             {errors.serial_number && touched.serial_number ? (
               <small id="passwordHelp" class="text-danger">
                 {errors.serial_number}
               </small>
             ) : null}
-          </div>
-          <div class="row">
-            <div class="offset-md-8 col-4">
+          </Grid>
+          <Grid class="row">
+            <Grid class="offset-md-8 col-4">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -90,52 +101,42 @@ const CRUDPage_update = (props) => {
               >
                 Add
               </button>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </form>
       );
     };  
 
     return (
-        <LayoutApp>   
-
-        <div className="container-fluid">
-          <div className="container">
-            <div className="page-container">
-            <div className="register-box">
-              <div className="card">
-                <div className="card-body register-card-body">
-                  <p className="login-box-msg">Update Data</p>
-      
-                  <Formik
-                    // enableReinitialize allows us to repopulate form again
-                    // because the form will load success until we send a request for getting data
-                    enableReinitialize={true}
-                    // we store data from API to state and initialize crudReducer.result as null
-                    initialValues={
-                      crudReducer.result
-                        ? crudReducer.result
-                        : { alias: "", serial_number: "" }
-                    }
-                    onSubmit={(values, { setSubmitting }) => {
-                      dispatch(crudActions.update(values, props.history));
-                      setSubmitting(false);
-                    }}
-                    // validationSchema={Create_Schema}
-                  >
-                    {/* {this.showForm()}            */}
-                    {(props) => showForm(props)}
-                  </Formik>
-                </div>
-                {/* /.form-box */}
-              </div>
-              {/* /.card */}
-            </div>
-            </div>
-          </div>
-        </div>
+        <LayoutApp>
+                <Grid>
+                <Grid className="register-box">
+                  <Grid className="card">
+                    <Grid className="card-body register-card-body">
+                      <p className="login-box-msg">Add Pos Machine Data</p>
+          
+                      <Formik
+                        initialValues={{
+                          alias: "",
+                          serial_number: "",
+                        }}
+                        onSubmit={(values, { setSubmitting }) => {
+                    
+                          dispatch(CRUDActions.create(values, props.history));
+                          setSubmitting(false);
+                        }}
+                      >
+                        
+                        {(props) => showForm(props)}
+                      </Formik>
+                    </Grid>
+                    {/* /.form-box */}
+                  </Grid>
+                  {/* /.card */}
+                </Grid>
+                </Grid>
         </LayoutApp>
       );  
-}
+};
 
-export default CRUDPage_update;
+export default CRUDPage_create;

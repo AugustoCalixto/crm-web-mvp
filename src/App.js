@@ -22,10 +22,22 @@ import PasswordResetPage from './pages/auth/password/PasswordResetPage';
 import HomePage from './pages/app/HomePage';
 import Profile from "./pages/app/ProfilePage";
 import ProfilePage from "./pages/app/profile/ProfilePage";
+
+// Patient
+import PatientPage_create from './pages/app/PatientPage/Patient_create';
+import PatientPage_index from './pages/app/PatientPage/Patient_index';
+import PatientPage_update from './pages/app/PatientPage/Patient_update';
+
+// Appointment
+import AppointmentPage_create from './pages/app/AppointmentPage/Appointment_create';
+import AppointmentPage_index from './pages/app/AppointmentPage/Appointment_index';
+import AppointmentPage_update from './pages/app/AppointmentPage/Appointment_update';
+
 // CRUD template
 import CRUDPage_create from './pages/app/CRUDPage/CRUD_create';
 import CRUDPage_index from './pages/app/CRUDPage/CRUD_index';
 import CRUDPage_update from './pages/app/CRUDPage/CRUD_update';
+
 import LoginRegisterPage from './pages/auth/LoginRegisterPage';
 
 // Start Icons
@@ -66,6 +78,16 @@ const App = () => {
           <SecuredRoute exact path="/profile" component={ProfilePage} />
           <SecuredRoute exact path="/profile/update" component={Profile} />
           <SecuredRoute exact path="/home" component={HomePage} />
+
+          {/* Patient Pages */}
+          <SecuredRoute exact path="/pacientes/update/:id" component={PatientPage_update} />
+          <SecuredRoute exact path="/pacientes/new" component={PatientPage_create} />
+          <SecuredRoute exact path="/pacientes/" component={PatientPage_index} />
+
+          {/* Appointment Pages */}
+          <SecuredRoute exact path="/consultas/update/:id" component={AppointmentPage_update} />
+          <SecuredRoute exact path="/consultas/new" component={AppointmentPage_create} />
+          <SecuredRoute exact path="/consultas/" component={AppointmentPage_index} />
 
           {/* Crud Pages */}
           <SecuredRoute exact path="/crud/update/:id" component={CRUDPage_update} />
