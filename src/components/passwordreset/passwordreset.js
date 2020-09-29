@@ -29,7 +29,7 @@ class Passwordreset extends Component {
       .then(res => {
         if (res.data.result === "success") {
           swal("Success!", res.data.message, "success").then(value => {
-            history.push("/login");
+            history.push("/entrar");
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
@@ -147,11 +147,11 @@ class Passwordreset extends Component {
                 {props => this.showForm(props)}
               </Formik>
               <p className="mb-0">
-                <Link to="/login">Login</Link>
+                <Link to="/entrar">Login</Link>
               </p>
 
               <p className="mb-0">
-                <Link to="/register">Register a new membership</Link>
+                <Link to="/cadastrar">Register a new membership</Link>
               </p>
             </div>
             {/* /.login-card-body */}

@@ -14,7 +14,7 @@ const CRUDPage_update = (props) => {
 
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
-      return props.history.push("/login");
+      return props.history.push("/entrar");
     }
     const { id } = props.match.params;
  

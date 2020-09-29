@@ -120,11 +120,11 @@ class Passwordforgot extends Component {
                 {props => this.showForm(props)}
               </Formik>
                 <p className="mb-0">
-                  <Link to="/login">Login</Link>
+                  <Link to="/entrar">Login</Link>
                 </p>
 
                 <p className="mb-0">
-                  <Link to="/register">Register a new membership</Link>
+                  <Link to="/cadastrar">Register a new membership</Link>
                 </p>
             </div>
             {/* /.login-card-body */}

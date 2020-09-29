@@ -24,6 +24,12 @@ export const CRUD_SUCCESS = "CRUD_SUCCESS";
 export const CRUD_FAILED = "CRUD_FAILED";
 export const CRUD_CLEAR = "CRUD_CLEAR";
 
+// Professional
+export const Professional_FETCHING = "Professional_FETCHING";
+export const Professional_SUCCESS = "Professional_SUCCESS";
+export const Professional_FAILED = "Professional_FAILED";
+export const Professional_CLEAR = "Professional_CLEAR";
+
 export const server = {
   LOGIN_URL: `login`,
   REFRESH_TOKEN_URL: `refresh/token`,

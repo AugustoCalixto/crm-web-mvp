@@ -24,13 +24,13 @@ import {
     return async (dispatch) => {
       dispatch(setRegisterStateToFetching());
       const response = await httpClient.post(
-        process.env.REACT_APP_API_URL + "register",
+        process.env.REACT_APP_API_URL + "/register",
         values
       );
       if (response.data.result == "success") {
         dispatch(setRegisterStateToSuccess(response.data));
         swal("Success!", response.data.message, "warning").then((value) => {
-          history.push("/login");
+          history.push("/entrar");
         });
       } else if (response.data.result === "error") {
         dispatch(setRegisterStateToFailed());

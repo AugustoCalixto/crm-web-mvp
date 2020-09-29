@@ -128,9 +128,9 @@ const StyledEmailSwal = styled.div`
 
 const Section1 = () => {
     let history = useHistory();
-
-    const handleClick = () => {
-        history.push("/login")
+    
+    const handleClickRegister = () => {
+        history.push("/cadastrar")
     }
 
     return (
@@ -161,7 +161,7 @@ const Section1 = () => {
                             <h2 className="text-center">Conectamos você a uma melhor saúde emocional.</h2>
                         </Grid>
                     </Grid>
-                    <Button className="d-block mx-auto mt-4" variant="contained" onClick={handleClick}>Entre no Beta e Ganhe Bônus</Button>
+                    <Button className="d-block mx-auto mt-4" variant="contained" onClick={handleClickRegister}>Entre no Beta e Ganhe Bônus</Button>
                 </div>
                 <div style={{gridArea: 'phoneImg'}}>
                     {/* <img className="phoneImg mx-auto d-block" alt='' src={phoneImg}/> */}

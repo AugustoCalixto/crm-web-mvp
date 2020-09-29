@@ -14,10 +14,7 @@ import { server } from "../../../redux/constants";
 import "./style.css";
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(2, "username is Too Short!")
-    .max(50, "username is Too Long!")
-    .required("Username is Required"),
+  email: Yup.string().email("Email Inválido").required("Campo Obrigatório"),
   password: Yup.string().required("Password is required"),
 });
 
@@ -91,15 +88,15 @@ const LoginRegisterPage = (props) => {
         <>
           <input
             type="text"
-            name="username"
+            name="email"
             onChange={handleChange}
-            value={values.username}
+            value={values.email}
             className="form-control"
-            placeholder="Nick de Usuário"
+            placeholder="Email"
           />
-          {errors.username && touched.username ? (
+          {errors.email && touched.email ? (
             <small id="passwordHelp" class="text-danger">
-              {errors.username}
+              {errors.email}
             </small>
           ) : null}
         </>

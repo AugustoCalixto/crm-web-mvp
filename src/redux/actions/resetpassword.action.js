@@ -25,7 +25,7 @@ export const resetpassword = (values, history, token) => {
     if (response.data.result === "success") {
       dispatch(setForgotStateToSuccess(response.data));
       swal("Success!", response.data.message, "success").then((value) => {
-        history.push("/login");
+        history.push("/entrar");
       });
     } else if (response.data.result === "error") {
       dispatch(setForgotStateToFailed());

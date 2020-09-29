@@ -28,6 +28,11 @@ import PatientPage_create from './pages/app/PatientPage/Patient_create';
 import PatientPage_index from './pages/app/PatientPage/Patient_index';
 import PatientPage_update from './pages/app/PatientPage/Patient_update';
 
+// Professional
+import ProfessionalPage_create from './pages/app/ProfessionalPage/create';
+import ProfessionalPage_index from './pages/app/ProfessionalPage/index';
+import ProfessionalPage_update from './pages/app/ProfessionalPage/update';
+
 // Appointment
 import AppointmentPage_create from './pages/app/AppointmentPage/Appointment_create';
 import AppointmentPage_index from './pages/app/AppointmentPage/Appointment_index';
@@ -57,7 +62,7 @@ const App = () => {
         loginActions.isLoggedIn() === true ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/entrar" />
         )
       }
     />
@@ -68,11 +73,11 @@ const App = () => {
           <Route exact path="/" component={LandingPage}/>
 
           {/* Auth Pages */}
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={LoginRegisterPage} />
-          <Route exact path="/login/:notify?" component={Login} />
-          <Route exact path="/password-reset/:token" component={PasswordResetPage} />
-          <Route exact path="/password/forgot" component={PasswordForgotPage} />
+          <Route exact path="/cadastrar" component={Register} />
+          <Route exact path="/entrar" component={LoginRegisterPage} />
+          {/* <Route exact path="/entrar/:notify?" component={Login} /> */}
+          {/* <Route exact path="/password-reset/:token" component={PasswordResetPage} />
+          <Route exact path="/password/forgot" component={PasswordForgotPage} /> */}
 
           {/* User Pages */}
           <SecuredRoute exact path="/profile" component={ProfilePage} />
@@ -83,6 +88,11 @@ const App = () => {
           <SecuredRoute exact path="/pacientes/update/:id" component={PatientPage_update} />
           <SecuredRoute exact path="/pacientes/new" component={PatientPage_create} />
           <SecuredRoute exact path="/pacientes/" component={PatientPage_index} />
+
+          {/* Patient Pages */}
+          <SecuredRoute exact path="/profissional/update/:id" component={ProfessionalPage_update} />
+          <SecuredRoute exact path="/profissional/new" component={ProfessionalPage_create} />
+          <SecuredRoute exact path="/profissional/" component={ProfessionalPage_index} />
 
           {/* Appointment Pages */}
           <SecuredRoute exact path="/consultas/update/:id" component={AppointmentPage_update} />

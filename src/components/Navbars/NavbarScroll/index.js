@@ -51,29 +51,35 @@ const NavbarScroll = (props) => {
             <div className="logo">
                 <a href="/"><img src={Logo} alt="" style={{borderRadius: ' '}}/></a>
             </div>
-            <Link to="/login" className="my-auto"><Button  variant="contained" style={{height: 40, width: 100, backgroundColor: '#11C5D9', color: 'white', fontWeight: '900'}}>Entrar</Button></Link>
             
-            {/*<Hidden  mdUp>
+            <Hidden mdDown>
+                <a href="#about" className="ml-auto mr-2 my-auto"><Button style={{height: 40, minWidth: 100, color: 'black', fontWeight: '900'}}>Sobre</Button></a>
+                <a href="#features" className="ml-2 mr-2 my-auto"><Button style={{height: 40, minWidth: 100, color: 'black', fontWeight: '900'}}>Funcionalidades</Button></a>
+                <a href="#partners" className="ml-2 mr-2 my-auto"><Button style={{height: 40, minWidth: 100, color: 'black', fontWeight: '900'}}>Parceiros</Button></a>
+                <Link to="/entrar" className="my-auto"><Button  variant="contained" style={{height: 40, width: 100, backgroundColor: '#11C5D9', color: 'white', fontWeight: '900'}}>Entrar</Button></Link>
+            </Hidden>
+
+            <Hidden  mdUp>
                 <MenuButton className="d-block ml-auto" style={{ width: '50px' }} onClick={() => { setMobileDrawer(true) }}>
                     <FontAwesomeIcon icon={faBars} style={{width: '100%', height: '100%'}}/>
                 </MenuButton>
             </Hidden>
             <Drawer anchor="right" open={mobileDrawer} onClose={() => { setMobileDrawer(false) }}>
                 <List>
-                    <DrawerButton button >
-                        <h3>About</h3>
-                    </DrawerButton>
-                    <DrawerButton button>
-                        <h3>Team</h3>
-                    </DrawerButton>
-                    <DrawerButton button>
-                        <h3>Partners</h3>
-                    </DrawerButton>
-                    <DrawerButton button>
+                    <a href="#about"><DrawerButton button >
+                        <h3>Sobre</h3>
+                    </DrawerButton></a>
+                    <a href="#features"><DrawerButton button>
+                        <h3>Funcionalidades</h3>
+                    </DrawerButton></a>
+                    <a href="#partners"><DrawerButton button>
+                        <h3>Parceiros</h3>
+                    </DrawerButton></a>
+                    {/* <DrawerButton button>
                         <h3>Contact</h3>
-                    </DrawerButton>
+                    </DrawerButton> */}
                 </List>
-            </Drawer>*/}
+            </Drawer>
         </StyledNav>
     )
 }

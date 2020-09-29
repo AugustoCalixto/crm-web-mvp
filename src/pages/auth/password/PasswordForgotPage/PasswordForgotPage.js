@@ -92,7 +92,7 @@ const PasswordForgotPage = (props) => {
               {(props) => showForm(props)}
             </Formik>
             <p className="mb-0">
-              <Link to="/login">Login</Link>
+              <Link to="/entrar">Login</Link>
             </p>
 
             <p className="mb-0">

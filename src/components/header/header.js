@@ -21,7 +21,7 @@ class Header extends Component {
         case "sure":
           swal(" SignOut Successfully", "success").then((val) => {
             localStorage.removeItem(server.TOKEN_KEY);
-            return this.props.history.push("/login");
+            return this.props.history.push("/entrar");
           });
           break;
         case "nope":

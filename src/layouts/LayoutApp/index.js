@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import axios from 'axios'
+import { useSelector } from "react-redux";
 
 import { Link, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
@@ -14,6 +15,7 @@ import { useStyles, StyledAppbar, StyledToolbar, StyledDrawer, StyledImgProfileC
 
 
 const LayoutApp = ({ children }) => {
+  useSelector(({ loginReducer }) => loginReducer);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
@@ -26,17 +28,20 @@ const LayoutApp = ({ children }) => {
   // Function that store the user id returned from the parseJWT function in the component state
   const getData = async id => {
     await axios
-      .get(process.env.REACT_APP_API_URL + 'profile/id/' + id)
+      .get(process.env.REACT_APP_API_URL + 'fetchUser/' + id)
       .then(response => {
+        console.log(response)
         if (response.data.avatars != undefined){
         document.getElementById('avatars').src =
-        process.env.REACT_APP_API_URL + 'images/' + response.data.avatars}
+        process.env.REACT_APP_API_URL + 'images/' + response.data.avatars
+        }
         else {
           document.getElementById('avatars').src = ProfileEmptyImage;
         }
         // profile.setAttribute("src",);
       })
       .catch(error => {
+        console.log(error)
       })
   }
 
@@ -58,7 +63,7 @@ const LayoutApp = ({ children }) => {
 
   const logout = () => {
     localStorage.clear();
-    history.push("/login")
+    history.push("/entrar")
   }
 
   // Retrieve the user id and get user data
@@ -137,6 +142,10 @@ const LayoutApp = ({ children }) => {
               <IconButton className="m-3" row href="/home">
                 <FontAwesomeIcon className="ml-1" icon="home" />
                 <Typography className="ml-3">Início</Typography>
+              </IconButton>
+              <IconButton className="m-3" row href="/profissional">
+                <FontAwesomeIcon className="ml-1" icon="street-view" />
+                <Typography className="ml-3">Profissionais</Typography>
               </IconButton>
               <IconButton className="m-3" row href="/pacientes">
                 <FontAwesomeIcon className="ml-1" icon="street-view" />
