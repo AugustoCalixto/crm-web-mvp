@@ -24,7 +24,7 @@ import {
     return async (dispatch) => {
       dispatch(setRegisterStateToFetching());
       const response = await httpClient.post(
-        process.env.REACT_APP_API_URL + "/register",
+        process.env.REACT_APP_API_URL + "register",
         values
       );
       if (response.data.result == "success") {
