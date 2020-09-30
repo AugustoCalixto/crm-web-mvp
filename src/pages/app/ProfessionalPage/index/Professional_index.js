@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as professionalActions from "../../../../redux/actions/professional.action";
 import { server } from "../../../../redux/constants";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +10,52 @@ import ProfileEmptyImage from '../../../../assets/images/user.png';
 import LayoutApp from "../../../../layouts/LayoutApp";
 import { Grid, Card, Button, Typography, Box, CardContent, CardMedia } from "@material-ui/core";
 
+// new imports 
+import TextField from '@material-ui/core/TextField';
+
+const card_title = {
+  color: '#333333',
+  fontSize: '1.2rem',
+  fontWeight: 'bold'
+}
+
+const card_subTitle = {
+  color: '#666666',
+  fontSize: '0.9rem',
+}
+
+const card_crp = {
+  color: '#717171',
+  fontSize: '0.6rem',
+}
+
+const card_paragraph = {
+  fontSize: '0.8rem',
+  color: '#717171',
+  width: '50%'
+}
+
+const card_form = {
+  marginBottom: '10px'
+}
+
 const Professional_index = (props) => {
+  const [isConsult, setConsult] = useState(null);
+  const [confirmConsult, setConfirmConsult] = useState(false);
+  const dateRef = useRef(null)
+
+  const handleConsult = (profId) => {
+    setConsult(profId)
+  }
+
+  const handleConfirmConsult = () => {
+    try {
+      setConfirmConsult(!!dateRef.current.value)
+    } catch {
+
+    }
+  }
+
   const professionalReducer = useSelector(
     ({ professionalReducer }) => professionalReducer
   );
@@ -72,15 +117,50 @@ const Professional_index = (props) => {
                   image={ProfileEmptyImage}
                 />
                 <CardContent>
-                  <Grid container>
-                  <Grid xs={10}>
-                  <Typography>{prof.first_name+" "+prof.last_name}</Typography>
-                  <Typography>Psicólogo</Typography>
-                  </Grid>
-                  <Grid xs={2}>
+                  <Grid container
+                        direction="column"
+                        justify="space-around"
+                        alignItems="flex-end">
+                  <Grid xs={12}
+                        container>
+                    <Grid xs={10}>
+                    <Typography  style={card_title}>{prof.first_name+" "+prof.last_name}</Typography>
+                    <Typography style={card_subTitle}>Psicólogo</Typography>
+                    <Typography style={card_crp} >CRP: 00/12345 | Rio de Janeiro</Typography>
+                    </Grid>
 
-                  <Button variant="contained" onClick={() => handleClickConsulta(profId)}>Marcar Consulta</Button>
+                    <Grid xs={2}>
+                    <Button variant="contained" onClick={() => handleConsult(profId)}>Marcar Consulta</Button>
+                    </Grid>
                   </Grid>
+                  { isConsult === profId ?
+                  <Grid id={profId}
+                        container
+                        direction="row"
+                        justify="space-between"
+                        alignItems="center"
+                        className="dateGrid">
+                    <Grid>
+                      <Typography style={card_paragraph}>Pós graduanda em Psicologia Positiva e Autoconhecimento-PUC-RS.Especialização em Psicologia Clínica pela PUC-RJ;Graduação em Psicologia pelo IBMR;</Typography>
+                    </Grid>
+                    <Grid direction="column"
+                          justify="space-between">
+                      <form style={card_form} noValidate>
+                      <TextField
+                          inputRef={dateRef}
+                          onChange={() => handleConfirmConsult()}
+                          id="datetime-local"
+                          label="Next appointment"
+                          type="datetime-local"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                        />
+                      </form>
+                      <Button variant="contained" disabled={!confirmConsult} >Confirmar</Button>
+                    </Grid>
+                  </Grid>
+                  : <Grid/>}
                   </Grid>
                 </CardContent>
               </Card>
