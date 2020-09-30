@@ -5,10 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
-
+import { Grid, Card, Button, Typography, Box, CardContent, CardMedia } from "@material-ui/core";
 import LayoutApp from '../../../../layouts/LayoutApp';
 
-const CRUD_index = (props) => {
+import axios from 'axios'
+
+const AppointmentPage_index = (props) => {
   const crudReducer = useSelector(
     ({ crudReducer }) => crudReducer
   );
@@ -38,50 +40,24 @@ const CRUD_index = (props) => {
     });
   }  
 
+  const [allAppointments, setAllAppointments] = useState([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:8080/appointment').then(response => {
+      setAllAppointments(response.data.data)  
+      console.log(response.data.data)
+      console.log(allAppointments)
+      setAllAppointments(allAppointments => ({ ...allAppointments, a: response.data.data }));
+    }).catch(error => console.log(error));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
   return (
     <LayoutApp>
-    <div className="container-fluid">
-      <div className="container">
-        <div className="page-container">
-        <Table className="table table-hover text-nowrap">
-          <TableHead>
-            <TableRow>
-              <th>Alias</th>
-              <th>Serial Name</th>
-              <th>Created Date</th>
-              <th>Action</th>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {crudReducer.result ? (
-              crudReducer.result.map((data, index) => {
-                return (
-                  <TableRow key={index}>
-                    <TableCell>{data.alias}</TableCell>
-                    <TableCell>{data.serial_number}</TableCell>
-                    <TableCell>{data.created}</TableCell>
-                    <TableCell>
-                      <Link to={"/crud/update/" + data._id}>
-                        Edit
-                      </Link>
-                      {" | "}
-                      <Link onClick={() => confirmDelete(data._id)}>
-                        Delete
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                );
-              })
-            ) : (
-              <TableCell></TableCell>
-            )}
-          </TableBody>
-        </Table>
-        </div>
-      </div>    
-    </div>
+      
     </LayoutApp>
   )
 }
 
-export default CRUD_index;
+export default AppointmentPage_index;

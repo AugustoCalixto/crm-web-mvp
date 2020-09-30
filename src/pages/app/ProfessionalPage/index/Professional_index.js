@@ -12,6 +12,7 @@ import { Grid, Card, Button, Typography, Box, CardContent, CardMedia } from "@ma
 
 // new imports 
 import TextField from '@material-ui/core/TextField';
+import jwt from 'jsonwebtoken'
 
 const card_title = {
   color: '#333333',
@@ -50,10 +51,26 @@ const Professional_index = (props) => {
 
   const handleConfirmConsult = () => {
     try {
+      console.log(dateRef.current.value)
       setConfirmConsult(!!dateRef.current.value)
     } catch {
-
     }
+  }
+
+  const createNewAppointment = (profId) => {
+    const jwToken = localStorage.getItem('token')
+    const {id} = jwt.decode(jwToken)
+    const reqBody = {
+      patient_id: id,
+      professional_id: profId,
+      appointment_date: dateRef.current.value,
+    }
+
+    axios.post('http://localhost:8080/appointment', reqBody).then(response => {
+      console.log(response);
+    }).catch(error => console.log(error));
+
+    console.log(reqBody)
   }
 
   const professionalReducer = useSelector(
@@ -157,7 +174,7 @@ const Professional_index = (props) => {
                           }}
                         />
                       </form>
-                      <Button variant="contained" disabled={!confirmConsult} >Confirmar</Button>
+                      <Button variant="contained" disabled={!confirmConsult} onClick={()=> {createNewAppointment(profId)}}>Confirmar</Button>
                     </Grid>
                   </Grid>
                   : <Grid/>}
