@@ -45,6 +45,9 @@ import CRUDPage_update from './pages/app/CRUDPage/CRUD_update';
 
 import LoginRegisterPage from './pages/auth/LoginRegisterPage';
 
+// VIDEO
+import VideoPage from './pages/video/VideoPage';
+
 // Start Icons
 library.add(fab, faBars, faStreetView, faHome, faShieldAlt, faCalendarCheck)
 
@@ -71,6 +74,7 @@ const App = () => {
   return (
         <Switch>
           <Route exact path="/" component={LandingPage}/>
+          <Route exact path="/video" component={VideoPage}/>
 
           {/* Auth Pages */}
           <Route exact path="/cadastrar" component={Register} />

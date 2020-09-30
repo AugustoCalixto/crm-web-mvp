@@ -31,6 +31,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.0",
     "sweetalert": "^2.1.2",
+    "twilio-video": "^2.7.2",
     "url-join": "^4.0.1",
     "yup": "^0.29.1"
   },
